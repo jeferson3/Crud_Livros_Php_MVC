@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 </head>
 
 <body>
@@ -80,6 +80,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <i class=''></i>
                         <?php
                         require_once('conexao.php');
                         $crud = new Crud("localhost", "crud", "root", "");
@@ -94,12 +95,12 @@
                                 <td>$i[3]</td>
                                 <td>
                                 <a href='delete.php?id=$i[0]' title='deletar'>
-                                    <i class='fa fa-times-circle fa-2x text-danger' aria-hidden='true'></i>
+                                    <i class='fas fa-trash-alt fas-2x text-danger'></i>
                                 </a>
                                 <a href='#' title='atualizar'
                                 data-toggle='modal' data-target='#update'
                                 data-id=<?php echo $i[0]; ?>
-                                    <i class='fa fa-pencil-square fa-2x text-success' aria-hidden='true'></i>
+                                    <i class='fas fa-edit fas-2x text-success' aria-hidden='true'></i>
                                 </a>
                                 
                                 </tr>
