@@ -11,24 +11,29 @@
 
 <body>
     <div class="container pt-3">
-        <?php
-        session_start();
-        if (isset($_SESSION['message'])) {
-            $message = $_SESSION['message'];
-            $messageType = $_SESSION['messageType'];
 
-            echo "<div id='alertBox' class='alert alert-$messageType alert-dismissible fade show' role='alert'>
-              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-              </button>
-              <strong></strong> 
-              $message
-            </div>";            
-            unset($_SESSION['message']);
-            unset($_SESSION['messageType']);
-        }
-        ?>
         <form id="submit" method="POST" action="adicionar.php">
+            <div class="row justify-content-center">
+                <div class="col-sm-8">
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['message'])) {
+                        $message = $_SESSION['message'];
+                        $messageType = $_SESSION['messageType'];
+
+                        echo "<div id='alertBox' class='alert alert-$messageType alert-dismissible fade show' role='alert'>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                            <strong></strong> 
+                            $message
+                            </div>";
+                        unset($_SESSION['message']);
+                        unset($_SESSION['messageType']);
+                    }
+                    ?>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -108,8 +113,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script>
-        var alertBox = document.getElementById('alertBox')
-        .addEventListener('');
+        var alertBox = document.getElementById('alertBox');
+        if (alertBox) {
+
+            var i = 1.0;
+
+            function temp() {
+                document.getElementById('alertBox').style.opacity = i;
+                i -= 0.2;
+                console.log('ou');
+                console.log(i);
+                if (i <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('alertBox').style.display = 'none';
+
+                }
+            }
+            var interval = setInterval(temp, 300);
+
+        }
+
 
         // $('#alertBox').delay(2000);
     </script>
