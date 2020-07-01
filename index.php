@@ -38,26 +38,26 @@
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" name="nome" class='form-control'>
+                        <input type="text" name="nome" placeholder="Nome" class='form-control'>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" name="sobrenome" class='form-control'>
+                        <input type="text" name="sobrenome" placeholder="Sobrenome" class='form-control'>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-8">
                     <div class="form-group">
-                        <input type="email" name="email" class='form-control'>
+                        <input type="email" name="email" placeholder="Email" class='form-control'>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-8">
                     <div class="form-group">
-                        <textarea name="txt" cols="30" rows="5" class='form-control'></textarea>
+                        <textarea name="txt" cols="30" rows="5" class='form-control' placeholder="Descrição"></textarea>
                     </div>
                 </div>
             </div>
@@ -74,9 +74,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th width=200>Nome</th>
-                            <th width=200>Email</th>
-                            <th></th>
+                            <th width=300>Nome</th>
+                            <th width=300>Email</th>
+                            <th width=300>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
