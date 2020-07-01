@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -68,42 +69,99 @@
         </form>
 
         <div class="row justify-content-center">
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>Email</th>
-                        <th>Descrição</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once('conexao.php');
-                    $crud = new Crud("localhost", "crud", "root", "");
-                    $con = $crud->conexao();
-                    $dados = $crud->pegarDados($con);
-                    if ($dados) {
-                        foreach ($dados->fetchAll() as $key => $i) {
-                            echo "<a href='#'>";
-                            echo "<tr>";
-                            echo "<td>$key</td>";
-                            echo "<td>$i[1]</td>";
-                            echo "<td>$i[2]</td>";
-                            echo "<td>$i[3]</td>";
-                            echo "<td>$i[4]</td>";
-                            echo "<td>";
-                            echo "<a href='delete.php?id=$i[0]'>&times;</a>";
-                            echo "</td>";
-                            echo "</tr>";
-                            echo "</a>";
+            <div class="col-md-8">
+
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>Email</th>
+                            <th>Descrição</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        require_once('conexao.php');
+                        $crud = new Crud("localhost", "crud", "root", "");
+                        $con = $crud->conexao();
+                        $dados = $crud->pegarDados($con);
+                        if ($dados) {
+                            foreach ($dados->fetchAll() as $key => $i) {
+                                echo "<a href='#'>";
+                                echo "<tr>";
+                                echo "<td>$key</td>";
+                                echo "<td>$i[1]</td>";
+                                echo "<td>$i[2]</td>";
+                                echo "<td>$i[3]</td>";
+                                echo "<td>$i[4]</td>";
+                                echo "<td>";
+                                echo "<a href='delete.php?id=$i[0]' title='deletar'>
+                                    <i class='fa fa-times-circle fa-2x text-danger' aria-hidden='true'></i>
+                                </a>
+                                <a href='#' data-toggle='modal' data-target='#update' title='atualizar'>
+                                    <i class='fa fa-pencil-square fa-2x text-success' aria-hidden='true'></i>
+                                </a>
+                                ";
+                                echo "</td>";
+                                echo "</tr>";
+                                echo "</a>";
+                            }
                         }
-                    }
-                    ?>
-                </tbody>
-            </table>
+
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Atualizar</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="update.php">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8 form-group">
+                                        <input value="" type="text" name="nome" class='form-control' placeholder="nome">
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8 form-group">
+                                        <input type="text" name="sobrenome" class='form-control' placeholder="sobrenome">
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="email" name="email" class='form-control' placeholder="email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <textarea name="txt" cols="30" rows="5" class='form-control' placeholder="descrição"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" id='save' name='atualizar' class="btn btn-success" value="salvar">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -133,8 +191,9 @@
 
         }
 
-
-        // $('#alertBox').delay(2000);
+        function a() {
+            alert()
+        }
     </script>
 </body>
 
