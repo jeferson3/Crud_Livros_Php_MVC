@@ -20,7 +20,9 @@ class Crud
         try {
             return new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
         } catch (Exception $error) {
-            echo "<div class='alert alert-danger'><strong>Erro in connection:</strong><br>".$error->getMessage()."</div>";
+            $_SESSION['message'] = 'Erro ao conectar ao servidor jjdhjd';
+            $_SESSION['messageType'] = 'danger';
+            return false;
         }
     }
 
@@ -30,20 +32,25 @@ class Crud
             try {
                 return $con->query("SELECT * from pessoas");
             } catch (Exception $error) {
-                echo "Get data error:<br>" . $error->getMessage();
+                return $error->getMessage();
             }
         }
     }
     function inserirDados($con, $data)
     {
-        if($con){
+        if ($con) {
             try {
                 $stmt = $con->prepare("INSERT into pessoas
                 (nome, sobrenome, email, descricao) 
                 values(?, ?, ?, ?)");
                 $stmt->execute($data);
+
+                $_SESSION['message'] = 'Criado com sucesso';
+                $_SESSION['messageType'] = 'success';
                 return $stmt;
             } catch (Exception $error) {
+                $_SESSION['message'] = 'Erro ao adicionar novo usuário';
+                $_SESSION['messageType'] = 'warn';
                 return $error->getMessage();
             }
         }
@@ -51,10 +58,14 @@ class Crud
 
     function deletarDados($con, $id)
     {
-        if($con){
+        if ($con) {
             try {
+                $_SESSION['message'] = 'Deletado com sucesso';
+                $_SESSION['messageType'] = 'success';
                 return $con->query("DELETE from pessoas where id=$id");
             } catch (Exception $error) {
+                $_SESSION['message'] = 'Erro ao deletar usuário';
+                $_SESSION['messageType'] = 'warn';
                 return $error->getMessage();
             }
         }
@@ -62,6 +73,19 @@ class Crud
 
     function atualizarDados($con, $id, $novosDados)
     {
-        // em construção
+        if ($con) {
+            [$nome] = $novosDados;
+            echo $nome;
+            // try {
+            //     $_SESSION['message'] = 'Atualizado com sucesso';
+            //     $_SESSION['messageType'] = 'success';
+            //     return $con->query("UPDATE pessoas SET name=  where id=$id");
+
+            // } catch (Exception $error) {
+            //     $_SESSION['message'] = 'Erro ao atualizar usuário';
+            //     $_SESSION['messageType'] = 'warn';
+            //     return $error->getMessage();
+            // }
+        }
     }
 }
