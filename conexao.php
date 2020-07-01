@@ -36,6 +36,16 @@ class Crud
             }
         }
     }
+    function pegarPorId($con, $id)
+    {
+        if ($con) {
+            try {
+                return $con->query("SELECT * from pessoas where id=$id");
+            } catch (Exception $error) {
+                return $error->getMessage();
+            }
+        }
+    }
     function inserirDados($con, $data)
     {
         if ($con) {
