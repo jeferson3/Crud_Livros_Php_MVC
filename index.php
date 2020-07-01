@@ -80,12 +80,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <i class=''></i>
                         <?php
                         require_once('conexao.php');
                         $crud = new Crud("localhost", "crud", "root", "");
                         $con = $crud->conexao();
                         $dados = $crud->pegarDados($con);
+
+
+
                         if ($dados) {
                             foreach ($dados->fetchAll() as $key => $i) {
                                 echo "<a href='#'>
@@ -94,15 +96,13 @@
                                 <td>$i[1]</td>
                                 <td>$i[3]</td>
                                 <td>
-                                <a href='delete.php?id=$i[0]' title='deletar'>
+                                <a href='delete.php?id={$i[0]}' title='deletar'>
                                     <i class='fas fa-trash-alt fas-2x text-danger'></i>
-                                </a>
-                                <a href='#' title='atualizar'
-                                data-toggle='modal' data-target='#update'
-                                data-id=<?php echo $i[0]; ?>
+                                </a>";
+                                echo "
+                                <a href='#' title='atualizar' onclick= " . "modalEdit('$i[0]','$i[1]','$i[2]','$i[3]','$i[4]')" . " data-toggle='modal' data-target='#update'>
                                     <i class='fas fa-edit fas-2x text-success' aria-hidden='true'></i>
                                 </a>
-                                
                                 </tr>
                                 </td>
                                 </a>";
@@ -129,30 +129,31 @@
                 </div>
                 <div class="modal-body">
 
-                    <!-- <form method='POST' action='update.php'>
+                    <form method='POST' action='update.php'>
+                        <input type="hidden" id="idModal">
                         <div class='row justify-content-center'>
                             <div class='col-sm-4'>
                                 <div class='form-group'>
-                                    <input type='text' name='nome' class='form-control'>
+                                    <input type='text' name='nome' id="nomeModal" class='form-control'>
                                 </div>
                             </div>
                             <div class='col-sm-4'>
                                 <div class='form-group'>
-                                    <input type='text' name='sobrenome' class='form-control'>
+                                    <input type='text' name='sobrenome' id="sobrenomeModal" class='form-control'>
                                 </div>
                             </div>
                         </div>
                         <div class='row justify-content-center'>
                             <div class='col-sm-8'>
                                 <div class='form-group'>
-                                    <input type='email' name='email' class='form-control'>
+                                    <input type='email' name='email' id="emailModal" class='form-control'>
                                 </div>
                             </div>
                         </div>
                         <div class='row justify-content-center'>
                             <div class='col-sm-8'>
                                 <div class='form-group'>
-                                    <textarea name='txt' cols='30' rows='5' class='form-control'></textarea>
+                                    <textarea name='txt' cols='30' id="descricaoModal" rows='5' class='form-control'></textarea>
                                 </div>
                             </div>
                         </div>
@@ -161,11 +162,7 @@
                                 <input type='submit' id='save' name='atualizar' class='btn btn-success' value='salvar'>
                             </div>
                         </div>
-                    </form> -->
-                    <h1>Em construção</h1>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -186,8 +183,6 @@
             function temp() {
                 document.getElementById('alertBox').style.opacity = i;
                 i -= 0.2;
-                console.log('ou');
-                console.log(i);
                 if (i <= 0) {
                     clearInterval(interval);
                     document.getElementById('alertBox').style.display = 'none';
@@ -195,6 +190,17 @@
                 }
             }
             var interval = setInterval(temp, 300);
+
+        }
+
+        function modalEdit(id, nome, snome, email, desc) {
+            // ,'$i[2]','$i[3]','$i[4]'
+            // 
+            document.getElementById('idModal').value = id;
+            document.getElementById('nomeModal').value = nome;
+            document.getElementById('sobrenomeModal').value = snome;
+            document.getElementById('emailModal').value = email;
+            document.getElementById('descricaoModal').value = desc;
 
         }
     </script>
