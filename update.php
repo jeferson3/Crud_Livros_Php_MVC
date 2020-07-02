@@ -16,5 +16,5 @@ if ($_POST['atualizar']) {
     $crud = new Crud("localhost", "crud", "root", "");
     $con = $crud->conexao();
     $crud->atualizarDados($con, $id, [$nome, $sobrenome, $email, $descricao]);
-    header('location: index.php');
 }
+header('location: index.php');
