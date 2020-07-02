@@ -1,6 +1,6 @@
 <?php
 
-class Crud
+final class Crud
 {
 
     private $host;
@@ -20,7 +20,7 @@ class Crud
         try {
             return new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
         } catch (Exception $error) {
-            $_SESSION['message'] = 'Erro ao conectar ao servidor jjdhjd';
+            $_SESSION['message'] = 'Erro ao conectar ao servidor!';
             $_SESSION['messageType'] = 'danger';
             return false;
         }
@@ -103,3 +103,4 @@ class Crud
         }
     }
 }
+
