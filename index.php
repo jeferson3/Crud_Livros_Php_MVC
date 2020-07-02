@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" name="sobrenome" placeholder="Sobrenome" required  class='form-control'>
+                        <input type="text" name="sobrenome" placeholder="Sobrenome" required class='form-control'>
                     </div>
                 </div>
             </div>
@@ -86,10 +86,9 @@
                         $con = $crud->conexao();
                         $dados = $crud->pegarDados($con);
 
-
-
                         if ($dados) {
                             foreach ($dados->fetchAll() as $key => $i) {
+
                                 echo "<a href='#'>
                                 <tr>
                                 <td>$key</td>
@@ -99,13 +98,16 @@
                                 <a href='delete.php?id={$i[0]}' title='deletar'>
                                     <i class='fas fa-trash-alt fas-2x text-danger'></i>
                                 </a>";
-                                echo "
-                                <a href='#' title='atualizar' onclick= " . "modalEdit('$i[0]','$i[1]','$i[2]','$i[3]','$i[4]')" . " data-toggle='modal' data-target='#update'>
-                                    <i class='fas fa-edit fas-2x text-success' aria-hidden='true'></i>
-                                </a>
+
+
+
+                                echo '<a href="#"' . ' onclick=' . "'" . 'modalEdit(' . '"' . $i[0] . '"' . ', ' . '"' . $i[1] . '"' . ', ' . '"' . $i[2] . '"' . ', ' . '"' . $i[3] . '"' . ', ' . '"' . $i[4] . '"' . ')' . "'" . '
+                                data-toggle="modal" data-target="#update">
+                                
+                                <i class="fas fa-edit fas-2x text-success" aria-hidden="true"></i></a>
                                 </tr>
                                 </td>
-                                </a>";
+                                </a>';
                             }
                         }
 
@@ -116,6 +118,7 @@
         </div>
     </div>
     </div>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -186,7 +189,6 @@
                 if (i <= 0) {
                     clearInterval(interval);
                     document.getElementById('alertBox').style.display = 'none';
-
                 }
             }
             var interval = setInterval(temp, 300);
