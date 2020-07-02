@@ -130,7 +130,7 @@
                 <div class="modal-body">
 
                     <form method='POST' action='update.php'>
-                        <input type="hidden" id="idModal">
+                        <input type="hidden" name="id" id="idModal">
                         <div class='row justify-content-center'>
                             <div class='col-sm-4'>
                                 <div class='form-group'>
@@ -194,8 +194,7 @@
         }
 
         function modalEdit(id, nome, snome, email, desc) {
-            // ,'$i[2]','$i[3]','$i[4]'
-            // 
+            
             document.getElementById('idModal').value = id;
             document.getElementById('nomeModal').value = nome;
             document.getElementById('sobrenomeModal').value = snome;
