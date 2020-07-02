@@ -84,18 +84,22 @@ class Crud
     function atualizarDados($con, $id, $novosDados)
     {
         if ($con) {
-            [$nome] = $novosDados;
-            echo $nome;
-            // try {
-            //     $_SESSION['message'] = 'Atualizado com sucesso';
-            //     $_SESSION['messageType'] = 'success';
-            //     return $con->query("UPDATE pessoas SET name=  where id=$id");
+            [$nome, $sobrenome, $email, $descricao] = $novosDados;
 
-            // } catch (Exception $error) {
-            //     $_SESSION['message'] = 'Erro ao atualizar usuário';
-            //     $_SESSION['messageType'] = 'warn';
-            //     return $error->getMessage();
-            // }
+            try {
+                $_SESSION['message'] = 'Atualizado com sucesso';
+                $_SESSION['messageType'] = 'success';
+
+                $sql = "UPDATE pessoas SET nome=?, sobrenome=?, email=?, descricao=? WHERE id=?";
+                $stmt = $con->prepare($sql);
+                $stmt->execute([$nome, $sobrenome, $email, $descricao, $id]);
+
+                return $stmt;
+            } catch (Exception $error) {
+                $_SESSION['message'] = 'Erro ao atualizar usuário';
+                $_SESSION['messageType'] = 'warn';
+                return $error->getMessage();
+            }
         }
     }
 }
