@@ -14,6 +14,5 @@ if ($_POST['adicionar']) {
     $con = $crud->conexao();
     $crud->inserirDados($con, [$nome, $sobrenome, $email, $descricao]);
 
-
-    header("location: index.php");
 }
+header("location: index.php");
