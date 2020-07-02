@@ -38,26 +38,26 @@
             <div class="row justify-content-center">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" name="nome" placeholder="Nome" class='form-control'>
+                        <input type="text" name="nome" placeholder="Nome" required class='form-control'>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" name="sobrenome" placeholder="Sobrenome" class='form-control'>
+                        <input type="text" name="sobrenome" placeholder="Sobrenome" required  class='form-control'>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-8">
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" class='form-control'>
+                        <input type="email" name="email" required placeholder="Email" class='form-control'>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-8">
                     <div class="form-group">
-                        <textarea name="txt" cols="30" rows="5" class='form-control' placeholder="Descrição"></textarea>
+                        <textarea name="txt" cols="30" rows="5" required class='form-control' placeholder="Descrição"></textarea>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@
         }
 
         function modalEdit(id, nome, snome, email, desc) {
-            
+
             document.getElementById('idModal').value = id;
             document.getElementById('nomeModal').value = nome;
             document.getElementById('sobrenomeModal').value = snome;
