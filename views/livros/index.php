@@ -48,7 +48,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adicionarModal">Novo livro</h5>
+                    <h5 class="modal-title" id="adicionarModal"><?= is_null($oldLivro) ? 'Salvar':'Editar'?> livro</h5>
                     <a href="/" class="btn-close shadow-none"  aria-label="Close"></a>
                 </div>
                 <div class="modal-body">
