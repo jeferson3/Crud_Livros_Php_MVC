@@ -27,7 +27,7 @@ class Connection
         $dsn = "mysql:dbname=$db_name;host=$db_host";
 
         return $this->instance = new PDO($dsn, $db_user, $db_pass,
-            [PDO::ATTR_ERRMODE, PDO::FETCH_OBJ]
+            [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]
         );
     }
 }
