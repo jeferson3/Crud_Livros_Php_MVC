@@ -13,9 +13,11 @@ $nome = (isset($_POST['nome']) && !empty($_POST['nome'])) ? $_POST['nome'] : nul
 $estante = (isset($_POST['estante']) && !empty($_POST['estante'])) ? $_POST['estante'] : null;
 $autor = (isset($_POST['autor']) && !empty($_POST['autor'])) ? $_POST['autor'] : null;
 
-if (!is_null($id) && !is_null((new Livro())->find($id))){
+if (!is_null($id) && !is_null((new Livro())->find($id)) && !is_null($nome) && !is_null($estante) && !is_null($autor)){
 
-    $status = (new Livro())->update(new LivroClass($id, $nome, $estante, $autor));
+    $novoLivro = new LivroClass($id, $nome, $estante, $autor);
+
+    $status = (new Livro())->update($novoLivro);
 
     if ($status){
         $_SESSION['status'] = true;
