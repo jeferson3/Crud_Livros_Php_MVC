@@ -9,9 +9,8 @@ if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
 session_start();
 
 $id = isset($_POST['id']) ? $_POST['id'] : null;
-$livro = (new Livro())->find($id);
 
-if (!is_null($id) && !is_null($livro)){
+if (!is_null($id) && !is_null((new Livro())->find($id))){
 
     $status = (new Livro())->delete($id);
 
