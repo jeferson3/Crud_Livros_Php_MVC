@@ -5,7 +5,6 @@
 
     $livros = getAllLivros(); //pegando todos os livros cadastrados no banco
     isset($_GET['id']) ? $oldLivro = getLivro($_GET['id']) : $oldLivro = null //pega só um livro pelo id
-
 ?>
 
 <?php include "./views/layouts/html_header.php" ?>
@@ -35,7 +34,7 @@
             <td style="text-align: right">
                 <a href="?id=<?= $livro->getId() ?>" class="btn btn-primary btn-sm shadow-none">View</a>
                 <button onclick="deletarLivro('deletarLivroForm<?= $livro->getId() ?>')" class="btn btn-danger btn-sm shadow-none">Delete</button>
-                <form action="controllers/livros/delete.php" method="post" class="d-none" id="deletarLivroForm<?= $livro->getId() ?>">
+                <form action="/controllers/livros/delete.php" method="post" class="d-none" id="deletarLivroForm<?= $livro->getId() ?>">
                     <input type="hidden" name="id" value="<?= $livro->getId() ?>">
                 </form>
             </td>
