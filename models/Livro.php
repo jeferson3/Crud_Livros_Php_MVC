@@ -19,13 +19,9 @@ final class Livro extends Model
             $query = $this->con->prepare($sql);
             $query->bindValue(':id', $id);
 
-            if ($query->execute()){
-                if ($query->rowCount() > 0){
-
-                    $data = $query->fetch();
-                    return (new LivroClass($data['id'],$data['nome'],$data['estante'],$data['autor']));
-                }
-                return null;
+            if ($query->execute() && $query->rowCount() === 1){
+                $data = $query->fetch(PDO::FETCH_OBJ);
+                return (new LivroClass($data->id, $data->nome, $data->estante, $data->autor));
             }
             return null;
         }
@@ -47,14 +43,13 @@ final class Livro extends Model
             $data = array();
 
             if ($query->rowCount() > 0){
-                foreach ($query->fetchAll() as $value){
-                    array_push($data, (new LivroClass($value['id'],$value['nome'],$value['estante'],$value['autor'])));
+                foreach ($query->fetchAll(PDO::FETCH_OBJ) as $value){
+                    array_push($data, (new LivroClass($value->id,$value->nome,$value->estante,$value->autor)));
                 }
             }
             return $data;
         }
         catch (PDOException $exception){
-            var_dump($exception);
             return [];
         }
     }
@@ -99,7 +94,6 @@ final class Livro extends Model
             return $query->execute();
         }
         catch (PDOException $exception){
-            var_dump($exception);
             return false;
         }
     }
