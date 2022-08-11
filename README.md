@@ -1,4 +1,4 @@
-## Crud de livros com Php, HTML, Css, Javascript e mysql com arquitetura MCV + PDO
+## Crud de livros com Php, HTML, Css, Javascript e Mysql com arquitetura MCV + PDO
 
 ## Processo de instalação e configuração
 
