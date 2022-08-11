@@ -1,6 +1,17 @@
-# crud-php
-## crud com php puro e mysql, usando estrutura MCV + PDO
- 
+## Crud de livros com Php, HTML, Css, Javascript e mysql com arquitetura MCV + PDO
+
+## Processo de instalação e configuração
+
+Requisitos:
+- PHP 7.4+
+- Myslq
+
+Instalação Geral:
+- Clonar o repositório
+- Criar banco de dados, importar(teste.sql)
+- Alterar credenciais banco de dados src/config/credentials.ini
+- Iniciar servidor (php -S localhost:8000)
+
  # listagem
  ![image](https://user-images.githubusercontent.com/67127121/129401111-e99abffe-bb82-4198-895e-29b2b7aa7340.png)
 
